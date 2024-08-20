@@ -1,0 +1,50 @@
+menu "WIFI Configuration"
+    config ESP_WIFI_SSID
+        string "WiFi SSID"
+        default "myssid"
+        help
+            SSID (network name) for the example to connect to.
+
+    config ESP_WIFI_PASSWORD
+        string "WiFi Password"
+        default "mypassword"
+        help
+            WiFi password (WPA or WPA2) for the example to use.
+
+    config ESP_MAXIMUM_RETRY
+        int "Maximum retry"
+        default 5
+        help
+            Set the Maximum retry reconnecting.
+
+    menu "MQTT CLIENT"
+        config THING_ID
+            string "THING ID" 
+            help
+                Noob Maker client id
+        
+        config USERNAME
+            string "USERNAME" 
+            help
+                Noob Maker client password
+
+        config PASSWORD
+            string "PASSWORD" 
+            help
+                Noob Maker client password
+
+        config MQTT_URI
+            string "MQTT Uri" 
+            help
+                MQTT Uri
+
+        config CERTIFICATE_OVERRIDE
+            string "CERTIFICATE_OVERRIDE" 
+            help
+                MQTT Uri
+
+        config TOPIC_PREFIX
+            string "topic prefix"
+
+    endmenu 
+endmenu
