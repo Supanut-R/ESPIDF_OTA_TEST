@@ -1,0 +1,6 @@
+source "C:/Users/670104/.platformio/packages/framework-espidf/components/bootloader/Kconfig.projbuild"
+source "C:/Users/670104/.platformio/packages/framework-espidf/components/esp_app_format/Kconfig.projbuild"
+source "C:/Users/670104/.platformio/packages/framework-espidf/components/esp_rom/Kconfig.projbuild"
+source "C:/Users/670104/.platformio/packages/framework-espidf/components/esptool_py/Kconfig.projbuild"
+source "C:/Users/670104/.platformio/packages/framework-espidf/components/partition_table/Kconfig.projbuild"
+source "C:/Users/Public/ESP32_C3_Zero/ESPIDF_OTA/src/Kconfig.projbuild"
