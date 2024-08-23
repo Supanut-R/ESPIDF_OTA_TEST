@@ -43,6 +43,16 @@ menu "WIFI Configuration"
             help
                 MQTT Uri
 
+        config CERTIFICATE_GITHUB
+            string "CERTIFICATE_GITHUB" 
+            help
+                MQTT Uri
+
+        config CERTIFICATE_GITHUB_INTER
+            string "CERTIFICATE_GITHUB_INTER" 
+            help
+                MQTT Uri
+
         config TOPIC_PREFIX
             string "topic prefix"
 

@@ -46,15 +46,16 @@ char topic_out[64] = {0};
 char topic_checkin[64] = {0};
 char topic_ota[64] = {0};
 
-void subscribe_handler(char *topic, char *data);
-void ota_callback(char *payload);
+// void subscribe_handler(char *topic, char *data);
+// void ota_callback(char *payload);
 
-// Version 1.3
+// Version 1.5
 
 static const uint8_t mqtt_eclipseprojects_io_pem_start[] = "-----BEGIN CERTIFICATE-----\n" CONFIG_CERTIFICATE_OVERRIDE "\n-----END CERTIFICATE-----";
+static const uint8_t github_cert_pem_start[] = "-----BEGIN CERTIFICATE-----\n" CONFIG_CERTIFICATE_GITHUB "\n-----END CERTIFICATE-----";
 // static const uint8_t *mqtt_eclipseprojects_io_pem_end = mqtt_eclipseprojects_io_pem_start + sizeof(mqtt_eclipseprojects_io_pem_start) - 1;
-// extern const uint8_t mqtt_eclipseprojects_io_pem_start[]   asm("_binary_mqtt_eclipseprojects_io_pem_start");
-// extern const uint8_t mqtt_eclipseprojects_io_pem_end[]   asm("_binary_mqtt_eclipseprojects_io_pem_end");
+// extern const uint8_t server_cert_pem_start[]   asm("_binary_ca_cert_pem_start");
+// extern const uint8_t server_cert_pem_end[]   asm("_binary_ca_cert_pem_end");
 
 void ota_task(void *pvParameter);
 
@@ -96,13 +97,15 @@ void ota_task(void *pvParameter)
     char *api_url = (char *)pvParameter;
     vTaskDelay(1000 / portTICK_PERIOD_MS);
     esp_http_client_config_t config = {
+        //.url = "https://github.com/Supanut-R/OTA_TEST/releases/download/v1.0.0/firmware.bin",
         .url = api_url,
-        .cert_pem = NULL,                    // No custom certificate required
-        .skip_cert_common_name_check = true, // Skip common name check if not verifying
+        .cert_pem = (const char *)github_cert_pem_start,
+        //.cert_pem = (char *)server_cert_pem_start,
+        // .cert_pem = NULL,
         .event_handler = _http_event_handler,
         .keep_alive_enable = true,
     };
-
+    ESP_LOGI("Certificate", "Cert Content:\n%s", github_cert_pem_start);
     esp_https_ota_config_t ota_config = {
         .http_config = &config,
     };
@@ -141,40 +144,40 @@ esp_err_t start_ota(const char *api_url)
     return 0;
 }
 
-void ota_callback(char *payload)
-{
-    //   ota_result();
-    //   cJSON *root = cJSON_Parse(payload);
-    //   if (root != NULL) {
-    // char *url  = cJSON_GetObjectItem(root, "url")->valuestring;
-    char *url = payload;
-    // char *version  = cJSON_GetObjectItem(root, "v")->valuestring;
-    // ESP_LOGD(MQTT_TAG, "update firmware version: %s", version);
-    // user_event_post(MQTT_EVENTS_BASE, EVENT_MQTT_OTA, NULL, 0, 0);
-    // start_ota(url);
-    // if (start_ota(url) == ESP_OK) {
-    start_ota(url);
+// void ota_callback(char *payload)
+// {
+//     //   ota_result();
+//     //   cJSON *root = cJSON_Parse(payload);
+//     //   if (root != NULL) {
+//     // char *url  = cJSON_GetObjectItem(root, "url")->valuestring;
+//     char *url = payload;
+//     // char *version  = cJSON_GetObjectItem(root, "v")->valuestring;
+//     // ESP_LOGD(MQTT_TAG, "update firmware version: %s", version);
+//     // user_event_post(MQTT_EVENTS_BASE, EVENT_MQTT_OTA, NULL, 0, 0);
+//     // start_ota(url);
+//     // if (start_ota(url) == ESP_OK) {
+//     start_ota(url);
 
-    // ota_status(version, 2);
-    // user_event_post(MQTT_EVENTS_BASE, EVENT_MQTT_OTA_SUCCESS, NULL, 0, 0);
-    //} else {
-    // ota_status(version, 1);
-    // user_event_post(MQTT_EVENTS_BASE, EVENT_MQTT_OTA_FAILED, NULL, 0, 0);
-    //}
-    //}
-    // cJSON_Delete(root);
-}
+//     // ota_status(version, 2);
+//     // user_event_post(MQTT_EVENTS_BASE, EVENT_MQTT_OTA_SUCCESS, NULL, 0, 0);
+//     //} else {
+//     // ota_status(version, 1);
+//     // user_event_post(MQTT_EVENTS_BASE, EVENT_MQTT_OTA_FAILED, NULL, 0, 0);
+//     //}
+//     //}
+//     // cJSON_Delete(root);
+// }
 
-void subscribe_handler(char *topic, char *data)
-{
+// void subscribe_handler(char *topic, char *data)
+// {
 
-    // OTA
-    char *e = strstr(topic, topic_ota);
-    if (e)
-    {
-        ota_callback(data);
-    }
-}
+//     // OTA
+//     char *e = strstr(topic, topic_ota);
+//     if (e)
+//     {
+//         ota_callback(data);
+//     }
+// }
 
 static void event_handler(void *arg, esp_event_base_t event_base, int32_t event_id, void *event_data)
 {
@@ -212,7 +215,7 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
     esp_mqtt_event_handle_t event = (esp_mqtt_event_handle_t)event_data;
     esp_mqtt_client_handle_t client = event->client;
     // int msg_id;
-
+    static char received_message[100]; // Adjust size as needed
     switch ((esp_mqtt_event_id_t)event_id)
     {
     case MQTT_EVENT_CONNECTED:
@@ -229,7 +232,17 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
         ESP_LOGI(MQTT_TAG, "MQTT_EVENT_DATA");
         ESP_LOGI(MQTT_TAG, "TOPIC=%.*s", event->topic_len, event->topic);
         ESP_LOGI(MQTT_TAG, "DATA=%.*s", event->data_len, event->data);
-        subscribe_handler(event->topic, event->data);
+        // subscribe_handler(event->topic, event->data);
+        printf("'%.*s'\n", event->topic_len, event->topic); // Check for unexpected characters
+        printf("'%s'\n", topic_ota);
+
+        if (strstr(event->topic, topic_ota))
+        {
+            strncpy(received_message, event->data, event->data_len);
+            received_message[event->data_len] = '\0'; // Null-terminate the string
+            printf("'%s'\n", received_message);
+            start_ota(received_message);
+        }
         break;
     case MQTT_EVENT_ERROR:
         ESP_LOGI(MQTT_TAG, "MQTT_EVENT_ERROR");

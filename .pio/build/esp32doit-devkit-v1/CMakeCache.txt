@@ -290,7 +290,7 @@ ESPIDF_OTA_BINARY_DIR:STATIC=C:/Users/Public/ESP32_C3_Zero/ESPIDF_OTA/.pio/build
 ESPIDF_OTA_SOURCE_DIR:STATIC=C:/Users/Public/ESP32_C3_Zero/ESPIDF_OTA
 
 //No help, variable specified on the command line.
-EXTRA_COMPONENT_DIRS:PATH=c:/Users/Public/ESP32_C3_Zero/ESPIDF_OTA/src
+EXTRA_COMPONENT_DIRS:PATH=C:/Users/Public/ESP32_C3_Zero/ESPIDF_OTA/src
 
 //Generate the auto-generated files as needed
 GEN_FILES:BOOL=
@@ -335,7 +335,7 @@ PYTHON:UNINITIALIZED=C:\Users\670104\.platformio\penv\.espidf-5.2.1\Scripts\pyth
 PYTHON_DEPS_CHECKED:UNINITIALIZED=1
 
 //No help, variable specified on the command line.
-SDKCONFIG:UNINITIALIZED=c:\Users\Public\ESP32_C3_Zero\ESPIDF_OTA\sdkconfig.esp32doit-devkit-v1
+SDKCONFIG:UNINITIALIZED=C:\Users\Public\ESP32_C3_Zero\ESPIDF_OTA\sdkconfig.esp32doit-devkit-v1
 
 //Allow unsafe builds. These builds ARE NOT SECURE.
 UNSAFE_BUILD:BOOL=OFF

@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "ESPIDF_OTA",
-    "project_version":    "1",
+    "project_version":    "46c5b68-dirty",
     "project_path":       "C:/Users/Public/ESP32_C3_Zero/ESPIDF_OTA",
     "idf_path":           "C:/Users/670104/.platformio/packages/framework-espidf",
     "build_dir":          "C:/Users/Public/ESP32_C3_Zero/ESPIDF_OTA/.pio/build/esp32doit-devkit-v1",
@@ -1060,7 +1060,7 @@
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "C:/Users/Public/ESP32_C3_Zero/ESPIDF_OTA/.pio/build/esp32doit-devkit-v1/esp-idf/src/libsrc.a",
-            "sources": [ "C:/Users/Public/ESP32_C3_Zero/ESPIDF_OTA/src/CMakeLists.txt", "C:/Users/Public/ESP32_C3_Zero/ESPIDF_OTA/src/Kconfig.projbuild", "C:/Users/Public/ESP32_C3_Zero/ESPIDF_OTA/src/main.c" ],
+            "sources": [ "C:/Users/Public/ESP32_C3_Zero/ESPIDF_OTA/src/CMakeLists.txt", "C:/Users/Public/ESP32_C3_Zero/ESPIDF_OTA/src/Kconfig.projbuild", "C:/Users/Public/ESP32_C3_Zero/ESPIDF_OTA/src/ca_cert.pem", "C:/Users/Public/ESP32_C3_Zero/ESPIDF_OTA/src/main.c" ],
             "include_dirs": []
         },
         "tcp_transport": {
