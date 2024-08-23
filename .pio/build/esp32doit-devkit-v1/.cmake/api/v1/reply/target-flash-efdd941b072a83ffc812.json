@@ -1,10 +1,12 @@
 {
-	"backtrace" : 6,
+	"backtrace" : 8,
 	"backtraceGraph" : 
 	{
 		"commands" : 
 		[
 			"add_custom_target",
+			"esptool_py_flash_target",
+			"esptool_py_custom_target",
 			"include",
 			"__build_process_project_includes",
 			"idf_build_process",
@@ -16,8 +18,7 @@
 			"C:/Users/670104/.platformio/packages/framework-espidf/components/esptool_py/project_include.cmake",
 			"C:/Users/670104/.platformio/packages/framework-espidf/tools/cmake/build.cmake",
 			"C:/Users/670104/.platformio/packages/framework-espidf/tools/cmake/project.cmake",
-			"CMakeLists.txt",
-			"C:/Users/670104/.platformio/packages/framework-espidf/components/esptool_py/CMakeLists.txt"
+			"CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -25,25 +26,25 @@
 				"file" : 3
 			},
 			{
-				"command" : 4,
+				"command" : 6,
 				"file" : 3,
 				"line" : 5,
 				"parent" : 0
 			},
 			{
-				"command" : 3,
+				"command" : 5,
 				"file" : 2,
 				"line" : 605,
 				"parent" : 1
 			},
 			{
-				"command" : 2,
+				"command" : 4,
 				"file" : 1,
 				"line" : 624,
 				"parent" : 2
 			},
 			{
-				"command" : 1,
+				"command" : 3,
 				"file" : 1,
 				"line" : 400,
 				"parent" : 3
@@ -53,34 +54,48 @@
 				"parent" : 4
 			},
 			{
-				"command" : 0,
+				"command" : 2,
 				"file" : 0,
-				"line" : 157,
+				"line" : 532,
 				"parent" : 5
 			},
 			{
-				"file" : 4
+				"command" : 1,
+				"file" : 0,
+				"line" : 501,
+				"parent" : 6
 			},
 			{
-				"command" : 5,
-				"file" : 4,
-				"line" : 63,
+				"command" : 0,
+				"file" : 0,
+				"line" : 389,
 				"parent" : 7
+			},
+			{
+				"command" : 7,
+				"file" : 0,
+				"line" : 507,
+				"parent" : 6
 			}
 		]
 	},
 	"dependencies" : 
 	[
 		{
-			"backtrace" : 8,
-			"id" : "app_check_size::@bf8f55be585a12323665"
+			"backtrace" : 9,
+			"id" : "app::@6890427a1f51a3e7e1df"
 		},
 		{
-			"id" : "gen_project_binary::@6890427a1f51a3e7e1df"
+			"backtrace" : 9,
+			"id" : "bootloader::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 9,
+			"id" : "partition_table_bin::@8e7a60ee4fe55e1aaabf"
 		}
 	],
-	"id" : "app::@6890427a1f51a3e7e1df",
-	"name" : "app",
+	"id" : "flash::@6890427a1f51a3e7e1df",
+	"name" : "flash",
 	"paths" : 
 	{
 		"build" : ".",
@@ -106,15 +121,15 @@
 	"sources" : 
 	[
 		{
-			"backtrace" : 6,
+			"backtrace" : 8,
 			"isGenerated" : true,
-			"path" : ".pio/build/esp32doit-devkit-v1/CMakeFiles/app",
+			"path" : ".pio/build/esp32doit-devkit-v1/CMakeFiles/flash",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : ".pio/build/esp32doit-devkit-v1/CMakeFiles/app.rule",
+			"path" : ".pio/build/esp32doit-devkit-v1/CMakeFiles/flash.rule",
 			"sourceGroupIndex" : 1
 		}
 	],

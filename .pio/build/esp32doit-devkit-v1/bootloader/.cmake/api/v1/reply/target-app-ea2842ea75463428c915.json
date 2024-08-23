@@ -72,11 +72,11 @@
 	"dependencies" : 
 	[
 		{
-			"backtrace" : 8,
-			"id" : "bootloader_check_size::@bf8f55be585a12323665"
+			"id" : "gen_project_binary::@6890427a1f51a3e7e1df"
 		},
 		{
-			"id" : "gen_project_binary::@6890427a1f51a3e7e1df"
+			"backtrace" : 8,
+			"id" : "bootloader_check_size::@bf8f55be585a12323665"
 		}
 	],
 	"id" : "app::@6890427a1f51a3e7e1df",

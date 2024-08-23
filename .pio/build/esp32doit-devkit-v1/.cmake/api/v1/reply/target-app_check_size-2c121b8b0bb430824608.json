@@ -34,10 +34,10 @@
 	"dependencies" : 
 	[
 		{
-			"id" : "partition_table_bin::@8e7a60ee4fe55e1aaabf"
+			"id" : "gen_project_binary::@6890427a1f51a3e7e1df"
 		},
 		{
-			"id" : "gen_project_binary::@6890427a1f51a3e7e1df"
+			"id" : "partition_table_bin::@8e7a60ee4fe55e1aaabf"
 		}
 	],
 	"id" : "app_check_size::@bf8f55be585a12323665",

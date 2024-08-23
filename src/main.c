@@ -55,9 +55,6 @@ char topic_ota[64] = {0};
 
 static const uint8_t mqtt_eclipseprojects_io_pem_start[] = "-----BEGIN CERTIFICATE-----\n" CONFIG_CERTIFICATE_OVERRIDE "\n-----END CERTIFICATE-----";
 static const uint8_t github_cert_pem_start[] = "-----BEGIN CERTIFICATE-----\n" CONFIG_CERTIFICATE_GITHUB "\n-----END CERTIFICATE-----";
-// static const uint8_t *mqtt_eclipseprojects_io_pem_end = mqtt_eclipseprojects_io_pem_start + sizeof(mqtt_eclipseprojects_io_pem_start) - 1;
-// extern const uint8_t server_cert_pem_start[]   asm("_binary_ca_cert_pem_start");
-// extern const uint8_t server_cert_pem_end[]   asm("_binary_ca_cert_pem_end");
 
 void ota_task(void *pvParameter);
 
@@ -101,8 +98,6 @@ void ota_task(void *pvParameter)
     esp_http_client_config_t config = {
         .url = api_url,
         .cert_pem = (const char *)github_cert_pem_start,
-        //.cert_pem = (char *)server_cert_pem_start,
-        // .cert_pem = NULL,
         .event_handler = _http_event_handler,
         .keep_alive_enable = true,
     };
@@ -127,58 +122,9 @@ void ota_task(void *pvParameter)
 
 esp_err_t start_ota(const char *api_url)
 {
-    // esp_err_t err = ESP_FAIL;
-    // s_ota_event_group = xEventGroupCreate();
     xTaskCreatePinnedToCore(&ota_task, "ota_task", 8192, (void *)api_url, 5, NULL, 0);
-    //     EventBits_t bits = xEventGroupWaitBits(s_ota_event_group,
-    //             OTA_SUCCESS_BIT | OTA_FAIL_BIT,
-    //             pdFALSE,
-    //             pdFALSE,
-    //             portMAX_DELAY);
-    //     if (bits & OTA_SUCCESS_BIT) {
-    //         ESP_LOGI(TAG_OTA, "OTA Success");
-    //         err = ESP_OK;
-    //     } else if (bits & OTA_FAIL_BIT) {
-    //         ESP_LOGI(TAG_OTA, "OTA Failed");
-    //         err = ESP_FAIL;
-    //     }
     return 0;
 }
-
-// void ota_callback(char *payload)
-// {
-//     //   ota_result();
-//     //   cJSON *root = cJSON_Parse(payload);
-//     //   if (root != NULL) {
-//     // char *url  = cJSON_GetObjectItem(root, "url")->valuestring;
-//     char *url = payload;
-//     // char *version  = cJSON_GetObjectItem(root, "v")->valuestring;
-//     // ESP_LOGD(MQTT_TAG, "update firmware version: %s", version);
-//     // user_event_post(MQTT_EVENTS_BASE, EVENT_MQTT_OTA, NULL, 0, 0);
-//     // start_ota(url);
-//     // if (start_ota(url) == ESP_OK) {
-//     start_ota(url);
-
-//     // ota_status(version, 2);
-//     // user_event_post(MQTT_EVENTS_BASE, EVENT_MQTT_OTA_SUCCESS, NULL, 0, 0);
-//     //} else {
-//     // ota_status(version, 1);
-//     // user_event_post(MQTT_EVENTS_BASE, EVENT_MQTT_OTA_FAILED, NULL, 0, 0);
-//     //}
-//     //}
-//     // cJSON_Delete(root);
-// }
-
-// void subscribe_handler(char *topic, char *data)
-// {
-
-//     // OTA
-//     char *e = strstr(topic, topic_ota);
-//     if (e)
-//     {
-//         ota_callback(data);
-//     }
-// }
 
 static void event_handler(void *arg, esp_event_base_t event_base, int32_t event_id, void *event_data)
 {

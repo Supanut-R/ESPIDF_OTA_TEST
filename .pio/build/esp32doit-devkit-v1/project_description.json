@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "ESPIDF_OTA",
-    "project_version":    "46c5b68-dirty",
+    "project_version":    "9c159d9-dirty",
     "project_path":       "C:/Users/Public/ESP32_C3_Zero/ESPIDF_OTA",
     "idf_path":           "C:/Users/670104/.platformio/packages/framework-espidf",
     "build_dir":          "C:/Users/Public/ESP32_C3_Zero/ESPIDF_OTA/.pio/build/esp32doit-devkit-v1",

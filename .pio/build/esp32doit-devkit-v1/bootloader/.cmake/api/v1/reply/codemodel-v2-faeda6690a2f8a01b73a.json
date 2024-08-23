@@ -545,14 +545,14 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "app::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-app-504af90233fe112ec218.json",
+					"jsonFile" : "target-app-ea2842ea75463428c915.json",
 					"name" : "app",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "bootloader.elf::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-bootloader.elf-15afe42a8f3a820c6bb8.json",
+					"jsonFile" : "target-bootloader.elf-b03e0f922dc763180d57.json",
 					"name" : "bootloader.elf",
 					"projectIndex" : 0
 				},
