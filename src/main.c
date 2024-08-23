@@ -33,7 +33,9 @@
 #define WIFI_CONNECTED_BIT BIT0
 #define WIFI_FAIL_BIT BIT1
 #define TAG "wifi station"
-static const char *TAG_OTA = "dashboard_ota";
+static const char *TAG_OTA = "My_OTA";
+
+#define version "v1.7"
 
 static EventGroupHandle_t s_wifi_event_group;
 static int s_retry_num = 0; // Without static, s_retry_num would be globally accessible from any file in the program
@@ -97,7 +99,6 @@ void ota_task(void *pvParameter)
     char *api_url = (char *)pvParameter;
     vTaskDelay(1000 / portTICK_PERIOD_MS);
     esp_http_client_config_t config = {
-        //.url = "https://github.com/Supanut-R/OTA_TEST/releases/download/v1.0.0/firmware.bin",
         .url = api_url,
         .cert_pem = (const char *)github_cert_pem_start,
         //.cert_pem = (char *)server_cert_pem_start,
@@ -357,6 +358,7 @@ void wifi_init_sta()
 void app_main()
 {
     vTaskDelay(2000 / portTICK_PERIOD_MS);
+    ESP_LOGI(TAG_OTA, "version:%s", version);
 
     esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND)
